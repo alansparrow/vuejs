@@ -2,7 +2,8 @@ const app = Vue.createApp({
     data() {
         return {
             firstName: '',
-            lastName: ''
+            lastName: '',
+            name: ''
         };
     },
     methods: {
@@ -14,6 +15,9 @@ const app = Vue.createApp({
         },
         updateLastName(event) {
             this.lastName = event.target.value;
+        },
+        resetInput() {
+            this.name = '';
         }
     }
 });
