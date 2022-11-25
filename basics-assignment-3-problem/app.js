@@ -14,6 +14,9 @@ const app = Vue.createApp({
                 this.result = 'Too much!';
             } else {
                 this.result = 37;
+                setTimeout(() => {
+                    this.val = 0;
+                }, 5000);
             }
         }
     },
