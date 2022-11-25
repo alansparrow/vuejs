@@ -8,6 +8,12 @@ const app = Vue.createApp({
     };
   },
   watch: {
+    counter(value) {
+      if (value > 100) {
+        alert('Counter is: ' + this.counter + '. Reset it!');
+        this.counter = 0;
+      }
+    }
     // firstName(value) {
     //   if (value === '') {
     //     this.fullName = this.lastName;
