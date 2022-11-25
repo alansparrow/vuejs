@@ -5,23 +5,22 @@ const app = Vue.createApp({
       name: ''
     };
   },
-  methods: {
-    getFullName() {
-      console.log("exec getFullName()");
+  computed: {
+    fullName() {
+      console.log("exec fullName()");
       if (this.name === '') {
         return '';
       }
       return this.name + ' ' + 'Rock';
-    },
+    }
+  }
+  ,
+  methods: {
     resetInput() {
       this.name = ''; 
-      this.confirmInput();
     },
     submitForm(event) {
       alert('Submitted');
-    },
-    setName(event) {
-      this.name = event.target.value;
     },
     add(num) {
       this.counter += num;
