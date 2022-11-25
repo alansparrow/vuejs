@@ -2,17 +2,20 @@ const app = Vue.createApp({
   data() {
     return {
       counter: 80,
-      name: '',
-      confirmedName: ''
+      name: ''
     };
   },
   methods: {
+    getFullName() {
+      console.log("exec getFullName()");
+      if (this.name === '') {
+        return '';
+      }
+      return this.name + ' ' + 'Rock';
+    },
     resetInput() {
       this.name = ''; 
       this.confirmInput();
-    },
-    confirmInput() {
-      this.confirmedName = this.name;
     },
     submitForm(event) {
       alert('Submitted');
