@@ -4,33 +4,32 @@ const app = Vue.createApp({
       counter: 80,
       firstName: '',
       lastName: '',
-      fullName: ''
+      // fullName: ''
     };
   },
   watch: {
-    firstName(value) {
-      if (value === '') {
-        this.fullName = this.lastName;
-      } else {
-        this.fullName = value + ' ' + this.lastName;
-      }
-    },
-    lastName(value) {
-      if (value === '') {
-        this.fullName = this.firstName;
-      } else {
-        this.fullName = this.firstName + ' ' + value;
-      }
-    }
+    // firstName(value) {
+    //   if (value === '') {
+    //     this.fullName = this.lastName;
+    //   } else {
+    //     this.fullName = value + ' ' + this.lastName;
+    //   }
+    // },
+    // lastName(value) {
+    //   if (value === '') {
+    //     this.fullName = this.firstName;
+    //   } else {
+    //     this.fullName = this.firstName + ' ' + value;
+    //   }
+    // }
   },
   computed: {
-    // fullName() {
-    //   console.log("exec fullName()");
-    //   if (this.name === '') {
-    //     return '';
-    //   }
-    //   return this.name + ' ' + 'Rock';
-    // }
+    fullName() {
+      console.log("exec fullName()");
+      if (this.firstName !== '' || this.lastName !== '') {
+        return this.firstName + ' ' + this.lastName;
+      }
+    }
   }
   ,
   methods: {
