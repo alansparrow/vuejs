@@ -8,18 +8,11 @@ const app = Vue.createApp({
     },
     computed: {
         styleClasses() {
-            if (this.userInput === 'user1') {
-                return  {
-                    user1 : true,
-                    hidden: !this.paragraphVisibility,
-                    visible: this.paragraphVisibility
-                }
-            } else if (this.userInput === 'user2') {
-                return {
-                    user2: true,
-                    hidden: !this.paragraphVisibility,
-                    visible: this.paragraphVisibility
-                }
+            return {
+                user1: this.userInput === 'user1',
+                user2: this.userInput === 'user2',
+                hidden: !this.paragraphVisibility,
+                visible: this.paragraphVisibility
             }
         },
         inlineStyle() {
