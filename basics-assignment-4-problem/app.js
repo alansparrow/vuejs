@@ -29,14 +29,6 @@ const app = Vue.createApp({
             }
         }
     },
-    // watch: {
-    //     bgColorInput(value) {
-    //         console.log('bgColorInput: ' + value);
-    //         this.inlineStyle = {
-    //             'background-color': value
-    //         }
-    //     }
-    // },
     methods: {
         toggleParagraph() {
             console.log('toggle paragraph');
