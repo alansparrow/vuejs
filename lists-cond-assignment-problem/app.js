@@ -3,8 +3,12 @@ const app = Vue.createApp({
         return {
             enteredTask: '',
             tasks: [],
-            isListVisible: true,
-            toggleButtonText: 'Hide'
+            isListVisible: true
+        }
+    },
+    computed: {
+        buttonText() {
+            return this.isListVisible ? 'Hide List' : 'Show List';
         }
     },
     methods: {
@@ -17,7 +21,6 @@ const app = Vue.createApp({
         },
         toggleListVisibility() {
             this.isListVisible = !this.isListVisible;
-            this.toggleButtonText = this.isListVisible ? 'Hide' : 'Show';
         }
     }
 });
