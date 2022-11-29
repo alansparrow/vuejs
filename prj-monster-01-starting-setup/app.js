@@ -7,7 +7,8 @@ const app = Vue.createApp({
         return {
             playerHealth: 100,
             monsterHealth: 100,
-            currentRound: 0
+            currentRound: 0,
+            winner: null
         };
     },
     computed: {
@@ -24,11 +25,27 @@ const app = Vue.createApp({
             return this.currentRound % 4 !== 0;
         }
     },
+    watch: {
+        playerHealth(value) {
+            if (value <= 0 && this.monsterHealth <= 0) {
+                this.winner = 'draw';
+            } else if (value <= 0) {
+                this.winner = 'monster';
+            }
+        },
+        monsterHealth(value) {
+            if (value <= 0 && this.playerHealth <= 0) {
+                this.winner = 'draw';
+            } else if (value <= 0) {
+                this.winner = 'player';
+            }
+        }
+    },
     methods: {
         attackMonster() {
             if (this.playerHealth <= 0 || this.monsterHealth <= 0) {
                 console.log('Player health: ' + this.playerHealth
-                    + ' Monster health: ' + this.monsterHealth + '. Game is over!');
+                    + ', Monster health: ' + this.monsterHealth + '. Game is over!');
                 return;
             }
             this.currentRound++;
@@ -44,7 +61,7 @@ const app = Vue.createApp({
         attackPlayer() {
             if (this.playerHealth <= 0 || this.monsterHealth <= 0) {
                 console.log('Player health: ' + this.playerHealth
-                    + ' Monster health: ' + this.monsterHealth + '. Game is over!');
+                    + ', Monster health: ' + this.monsterHealth + '. Game is over!');
                 return;
             }
             const attackValue = getRandomValue(8, 15);
@@ -56,7 +73,7 @@ const app = Vue.createApp({
         specialAttackMonster() {
             if (this.playerHealth <= 0 || this.monsterHealth <= 0) {
                 console.log('Player health: ' + this.playerHealth
-                    + ' Monster health: ' + this.monsterHealth + '. Game is over!');
+                    + ', Monster health: ' + this.monsterHealth + '. Game is over!');
                 return;
             }
             this.currentRound++;
