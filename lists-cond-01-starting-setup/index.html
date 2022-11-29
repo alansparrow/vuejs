@@ -24,12 +24,7 @@
         No goals have been added yet - please start adding some!
       </p>
       <ul v-else>
-        <li v-for="(goal, idx) in goals">{{ goal }} - {{ idx }}</li>
-      </ul>
-      <ul>
-        <li v-for="(val, key, idx) in {name:'Fuzzy', age: 31}">
-          {{ key }}: {{ val }} - {{ idx }}
-        </li>
+        <li v-for="goal in goals">{{ goal }}</li>
       </ul>
     </section>
   </body>
