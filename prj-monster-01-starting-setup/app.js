@@ -102,6 +102,9 @@ const app = Vue.createApp({
             if (this.playerHealth > 100) {
                 this.playerHealth = 100;
             }
+        },
+        surrender() {
+            this.winner = 'monster';
         }
     },
 
