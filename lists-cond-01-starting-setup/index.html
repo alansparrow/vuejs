@@ -24,7 +24,9 @@
         No goals have been added yet - please start adding some!
       </p>
       <ul v-else>
-        <li v-for="goal in goals">{{ goal }}</li>
+        <li v-for="(goal, idx) in goals" @click="removeGoal(idx)">
+          {{ goal }}
+        </li>
       </ul>
     </section>
   </body>
