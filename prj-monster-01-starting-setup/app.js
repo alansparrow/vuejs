@@ -42,10 +42,23 @@ const app = Vue.createApp({
         }
     },
     methods: {
-        attackMonster() {
+        startGame() {
+            this.playerHealth = 100;
+            this.monsterHealth = 100;
+            this.currentRound = 0;
+            this.winner = null;
+        },
+        isGameOver() {
             if (this.playerHealth <= 0 || this.monsterHealth <= 0) {
                 console.log('Player health: ' + this.playerHealth
                     + ', Monster health: ' + this.monsterHealth + '. Game is over!');
+                return true;
+            } else {
+                return false;
+            }
+        },
+        attackMonster() {
+            if (this.isGameOver() === true) {
                 return;
             }
             this.currentRound++;
@@ -59,9 +72,7 @@ const app = Vue.createApp({
             }
         },
         attackPlayer() {
-            if (this.playerHealth <= 0 || this.monsterHealth <= 0) {
-                console.log('Player health: ' + this.playerHealth
-                    + ', Monster health: ' + this.monsterHealth + '. Game is over!');
+            if (this.isGameOver() === true) {
                 return;
             }
             const attackValue = getRandomValue(8, 15);
@@ -71,9 +82,7 @@ const app = Vue.createApp({
             }
         },
         specialAttackMonster() {
-            if (this.playerHealth <= 0 || this.monsterHealth <= 0) {
-                console.log('Player health: ' + this.playerHealth
-                    + ', Monster health: ' + this.monsterHealth + '. Game is over!');
+            if (this.isGameOver() === true) {
                 return;
             }
             this.currentRound++;
