@@ -12,35 +12,41 @@ const app = Vue.createApp({
     },
     computed: {
         monsterBarStyles() {
-            return {width: this.monsterHealth + '%'};
+            return { width: this.monsterHealth + '%' };
         },
         playerBarStyles() {
-            return {width: this.playerHealth + '%'};
+            return { width: this.playerHealth + '%' };
         },
         mayUseSpecialAttack() {
             return this.currentRound % 3 !== 0;
+        },
+        mayUseHealPlayer() {
+            return this.currentRound % 4 !== 0;
         }
     },
     methods: {
         attackMonster() {
-            if (this.playerHealth > 0) {
-                if (this.monsterHealth > 0) {
-                    this.currentRound++;
-                    const attackValue = getRandomValue(5, 12);
-                    this.monsterHealth -= attackValue;
-                    if (this.monsterHealth > 0) {
-                        this.attackPlayer();
-                    } else {
-                        this.monsterHealth = 0;
-                        console.log('Monster is death!');
-                    }
-                }
-                
+            if (this.playerHealth <= 0 || this.monsterHealth <= 0) {
+                console.log('Player health: ' + this.playerHealth
+                    + ' Monster health: ' + this.monsterHealth + '. Game is over!');
+                return;
+            }
+            this.currentRound++;
+            const attackValue = getRandomValue(5, 12);
+            this.monsterHealth -= attackValue;
+            if (this.monsterHealth > 0) {
+                this.attackPlayer();
             } else {
-                console.log('Player is death!');
+                this.monsterHealth = 0;
+                console.log('Monster is death!');
             }
         },
         attackPlayer() {
+            if (this.playerHealth <= 0 || this.monsterHealth <= 0) {
+                console.log('Player health: ' + this.playerHealth
+                    + ' Monster health: ' + this.monsterHealth + '. Game is over!');
+                return;
+            }
             const attackValue = getRandomValue(8, 15);
             this.playerHealth -= attackValue;
             if (this.playerHealth < 0) {
@@ -48,24 +54,31 @@ const app = Vue.createApp({
             }
         },
         specialAttackMonster() {
-            if (this.playerHealth > 0) {
-                if (this.monsterHealth > 0) {
-                    this.currentRound++;
-                    const attackValue = getRandomValue(10, 25);
-                    this.monsterHealth -= attackValue;
-                    if (this.monsterHealth > 0) {
-                        this.attackPlayer();
-                    } else {
-                        this.monsterHealth = 0;
-                        console.log('Monster is death!');
-                    }
-                }
-                
+            if (this.playerHealth <= 0 || this.monsterHealth <= 0) {
+                console.log('Player health: ' + this.playerHealth
+                    + ' Monster health: ' + this.monsterHealth + '. Game is over!');
+                return;
+            }
+            this.currentRound++;
+            const attackValue = getRandomValue(10, 25);
+            this.monsterHealth -= attackValue;
+            if (this.monsterHealth > 0) {
+                this.attackPlayer();
             } else {
-                console.log('Player is death!');
+                this.monsterHealth = 0;
+                console.log('Monster is death!');
+            }
+        },
+        healPlayer() {
+            this.currentRound++;
+            const healValue = getRandomValue(8, 20);
+            this.playerHealth += healValue;
+            if (this.playerHealth > 100) {
+                this.playerHealth = 100;
             }
         }
-    }
+    },
+
 });
 
 app.mount('#game');
