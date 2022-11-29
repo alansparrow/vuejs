@@ -20,12 +20,17 @@ const app = Vue.createApp({
     methods: {
         attackMonster() {
             if (this.playerHealth > 0) {
-                const attackValue = getRandomValue(5, 12);
-                this.monsterHealth -= attackValue;
-                if (this.monsterHealth < 0) {
-                    this.monsterHealth = 0;
+                if (this.monsterHealth > 0) {
+                    const attackValue = getRandomValue(5, 12);
+                    this.monsterHealth -= attackValue;
+                    if (this.monsterHealth > 0) {
+                        this.attackPlayer();
+                    } else {
+                        this.monsterHealth = 0;
+                        console.log('Monster is death!');
+                    }
                 }
-                this.attackPlayer();
+                
             } else {
                 console.log('Player is death!');
             }
@@ -35,6 +40,23 @@ const app = Vue.createApp({
             this.playerHealth -= attackValue;
             if (this.playerHealth < 0) {
                 this.playerHealth = 0;
+            }
+        },
+        specialAttackMonster() {
+            if (this.playerHealth > 0) {
+                if (this.monsterHealth > 0) {
+                    const attackValue = getRandomValue(10, 25);
+                    this.monsterHealth -= attackValue;
+                    if (this.monsterHealth > 0) {
+                        this.attackPlayer();
+                    } else {
+                        this.monsterHealth = 0;
+                        console.log('Monster is death!');
+                    }
+                }
+                
+            } else {
+                console.log('Player is death!');
             }
         }
     }
