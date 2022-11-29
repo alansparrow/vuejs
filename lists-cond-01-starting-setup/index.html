@@ -20,9 +20,16 @@
       <h2>My course goals</h2>
       <input type="text" v-model="enteredGoalValue" />
       <button @click="addGoal">Add Goal</button>
-      <p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
+      <p v-if="goals.length === 0">
+        No goals have been added yet - please start adding some!
+      </p>
       <ul v-else>
-        <li v-for="goal in goals">{{ goal }}</li>
+        <li v-for="(goal, idx) in goals">{{ goal }} - {{ idx }}</li>
+      </ul>
+      <ul>
+        <li v-for="(val, key, idx) in {name:'Fuzzy', age: 31}">
+          {{ key }}: {{ val }} - {{ idx }}
+        </li>
       </ul>
     </section>
   </body>
