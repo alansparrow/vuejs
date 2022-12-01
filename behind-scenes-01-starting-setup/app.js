@@ -12,6 +12,7 @@ const app = Vue.createApp({
     setText() {
       // this.message = this.currentUserInput;
       console.dir(this.$refs.userText);
+      this.message = this.$refs.userText.value;
     },
   },
 });
