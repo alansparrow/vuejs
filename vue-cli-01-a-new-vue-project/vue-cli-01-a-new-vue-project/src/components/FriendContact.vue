@@ -20,7 +20,7 @@ export default {
     id: {
       type: String,
       required: true
-    },  
+    }, 
     name: {
       type: String,
       required: true
@@ -39,6 +39,17 @@ export default {
       default: true
     }
   },
+  emits: ['toggle-favorite'], 
+    // emits: {
+    //   'toggle-favorite': function(id) {
+    //     if (id) {
+    //       return true;
+    //     } else {
+    //       console.warn('Id is missing!');
+    //       return false;
+    //     }
+    //   }
+    // },  
   data() {
     return {
       detailsAreVisible: false
