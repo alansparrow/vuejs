@@ -3,8 +3,9 @@
     <learning-resource
       v-for="res in resources"
       :key="res.id"
+      :id="res.id"
       :title="res.title"
-      :decs="res.decs"
+      :desc="res.desc"
       :link="res.link"
     ></learning-resource>
   </ul>
