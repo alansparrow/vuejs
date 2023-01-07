@@ -18,6 +18,7 @@ import UserItem from '../users/UserItem.vue';
 
 export default {
   inject: ['users', 'teams'],
+  props: ['teamId'],
   components: {
     UserItem,
   },
@@ -28,8 +29,7 @@ export default {
     };
   },
   methods: {
-    updateTeamMembers(route) {
-      const teamId = route.params.teamId;
+    updateTeamMembers(teamId) {
       const selectedTeam = this.teams.find((team) => team.id === teamId);
       const members = selectedTeam.members;
       const selectedMembers = [];
@@ -43,10 +43,10 @@ export default {
   },
   created() {
     console.log("created");
-    this.updateTeamMembers(this.$route);
+    this.updateTeamMembers(this.teamId);
   },
   watch: {
-    $route(newVal) {
+    teamId(newVal) {
       this.updateTeamMembers(newVal);
     }
   }
