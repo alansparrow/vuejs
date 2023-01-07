@@ -42,10 +42,16 @@ export default {
     },
   },
   created() {
-    console.log("created");
-    console.log(this.$route.query);
+    // console.log("created");
+    // console.log(this.$route.query);
     this.updateTeamMembers(this.teamId);
   },
+  // beforeRouteUpdate(to, from, next) {
+  //   console.log("TeamMembers Cmp beforeRouteUpdate");
+  //   console.log(to,from);
+  //   this.updateTeamMembers(to.params.teamId);
+  //   next();
+  // },
   watch: {
     teamId(newVal) {
       this.updateTeamMembers(newVal);
